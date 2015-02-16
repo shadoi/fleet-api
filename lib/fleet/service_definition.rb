@@ -6,10 +6,11 @@ module Fleet
     end
 
     def to_unit(name)
-      {
-        'name' => name,
-        'options' => options
-      }
+      h = { 'name' => name }
+      h['machineID'] = @service_def.fetch('machineID', '')
+      h['options'] = @service_def.fetch('options', '')
+      h['options'] ||= options
+      h
     end
 
     private
